@@ -9,30 +9,22 @@ namespace UI.Views
 {
     public class BottomBarView : AView
     {
+        private const float HideOffset = -500f;
+
+        [SerializeField] private RectTransform rectTransform;
         [SerializeField] private BottomButton buttonPrefab;
         [SerializeField] private Transform buttonContainer;
         [SerializeField] private BottomButtonSelectedView selectedView;
-        [Header("Optional")]
-        [SerializeField] private DOTweenAnimation hideAnimation;
-        [SerializeField] private DOTweenAnimation showAnimation;
         
         private readonly List<BottomButton> _buttons = new();
 
         private IBottomBarData _data;
         private BottomButton _selectedButton;
+        private Tween _hideTween;
+        private Tween _showTween;
         
         public event Action<Content> ContentActivated;
         public event Action Closed;
-
-        private void Awake()
-        {
-            hideAnimation.onComplete.AddListener(OnHideAnimationComplete);
-        }
-
-        private void OnHideAnimationComplete()
-        {
-            base.Hide();
-        }
 
         public void Bind(IBottomBarData data)
         {
@@ -42,53 +34,36 @@ namespace UI.Views
             selectedView.SetUnselected();
         }
         
-        public void OnButtonClicked(IBottomButtonData buttonData, BottomButton clickedButton)
-        {
-            _selectedButton?.SetSelected(false);
-            
-            if (_selectedButton == clickedButton || !buttonData.TargetContent.IsUnlocked)
-            {
-                Close();
-                return;
-            }
-         
-            ContentActivated?.Invoke(buttonData.TargetContent);
-
-            _selectedButton = clickedButton;
-            _selectedButton.SetSelected(true);
-            selectedView.SetButtonSelected(buttonData, _selectedButton.transform);
-        }
-
         public override void Hide()
         {
-            showAnimation?.DOKill();
+            _showTween?.Complete();
+            _hideTween?.Complete();
             
             Close();
             
-            if (hideAnimation != null)
-            {
-                hideAnimation.DORestart();
-            }
-            else
+            _hideTween = rectTransform.DOAnchorPosY(HideOffset, 0.3f).OnComplete(() =>
             {
                 base.Hide();
-            }
+            });
         }
         
         public override void Show()
         {
-            hideAnimation?.DOKill();
+            _hideTween?.Complete();
+            _showTween?.Complete();
+            
             base.Show();
-            showAnimation?.DORestart();
-        }
 
+            rectTransform.DOAnchorPosY(0, 0.3f);
+        }
+        
         private void Close()
         {
-            _selectedButton = null;
+            UnselectCurrentButton();
             selectedView.SetUnselected();
             Closed?.Invoke();
         }
-
+        
         private void InstantiateButtons(IReadOnlyList<IBottomButtonData> dataButtons)
         {
             foreach (var buttonData in dataButtons)
@@ -107,6 +82,34 @@ namespace UI.Views
             }
             
             _buttons.Clear();
+        }
+        
+        public void OnButtonClicked(IBottomButtonData buttonData, BottomButton clickedButton)
+        {
+            if (_selectedButton == clickedButton || !buttonData.TargetContent.IsUnlocked)
+            {
+                Close();
+                return;
+            }
+            
+            UnselectCurrentButton();
+         
+            ContentActivated?.Invoke(buttonData.TargetContent);
+
+            SelectButton(buttonData, clickedButton);
+        }
+
+        private void SelectButton(IBottomButtonData buttonData, BottomButton clickedButton)
+        {
+            _selectedButton = clickedButton;
+            _selectedButton.SetSelected(true);
+            selectedView.SetButtonSelected(buttonData, _selectedButton.transform);
+        }
+        
+        private void UnselectCurrentButton()
+        {
+            _selectedButton?.SetSelected(false);
+            _selectedButton = null;
         }
     }
 }
