@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93807b04d05c463799d82670636bba77, type: 3}
+  m_Name: BottomBar_Main
+  m_EditorClassIdentifier: Assembly-CSharp::UI.Models.BottomBarData
+  buttons:
+  - {fileID: 11400000, guid: f45486578fecdaf4e9e63975f8852760, type: 2}
+  - {fileID: 11400000, guid: a2f9fc15352eddb4c95eaf8438b520fb, type: 2}
+  - {fileID: 11400000, guid: 60f2c13d40705ce45a55eb7d81b2b4e0, type: 2}
+  - {fileID: 11400000, guid: 254981d08c1ba6b41b2cf279e3514947, type: 2}
+  - {fileID: 11400000, guid: 4839e64e64a052c44ad21a6719db6c54, type: 2}
