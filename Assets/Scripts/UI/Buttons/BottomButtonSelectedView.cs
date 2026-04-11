@@ -8,9 +8,12 @@ namespace UI.Buttons
 {
     public class BottomButtonSelectedView : AView
     {
+        [SerializeField] private RectTransform rectTransform;
         [SerializeField] private TMP_Text contentName;
 
         private Tween _moveTween;
+        
+        public float Width => rectTransform.rect.width;
         
         public void SetUnselected()
         {
@@ -22,7 +25,8 @@ namespace UI.Buttons
             
             Hide();
         }
-        public void SetButtonSelected(IBottomButtonData data, Transform anchor)
+        
+        public void SetButtonSelected(IBottomButtonData data, RectTransform anchor)
         {
             Show();
             contentName.text = data.TargetContent.ContentName;
@@ -31,10 +35,7 @@ namespace UI.Buttons
                 _moveTween.Kill();
             }
             
-            transform.SetParent(anchor, true);
-            transform.SetAsFirstSibling();
-            
-            _moveTween = transform.DOLocalMoveX(0f, 0.3f).SetEase(Ease.OutBack);
+            _moveTween = rectTransform.DOAnchorPosX(anchor.anchoredPosition.x, 0.3f).SetEase(Ease.OutQuad);
         }
     }
 }

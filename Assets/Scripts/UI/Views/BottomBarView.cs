@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UI.Buttons;
+using UI.Extensions;
 using UI.Models;
 using UnityEngine;
 
@@ -102,8 +103,8 @@ namespace UI.Views
         private void SelectButton(IBottomButtonData buttonData, BottomButton clickedButton)
         {
             _selectedButton = clickedButton;
-            _selectedButton.SetSelected(true);
-            selectedView.SetButtonSelected(buttonData, _selectedButton.transform);
+            _selectedButton.SetSelected(true, selectedView.Width);
+            selectedView.SetButtonSelected(buttonData, _selectedButton.transform.RectTransform());
         }
         
         private void UnselectCurrentButton()

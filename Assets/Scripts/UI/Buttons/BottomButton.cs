@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using UI.Extensions;
 using UI.Models;
 using UI.Views;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace UI.Buttons
 {
     public class BottomButton : AButton
     {
+        [SerializeField] private LayoutElement layoutElement;
         [SerializeField] private Image icon;
         [SerializeField] private Image lockedIcon;
         [SerializeField] private List<DOTweenAnimation> selectedAnimations;
@@ -24,8 +26,12 @@ namespace UI.Buttons
             RefreshLockState(_data);
         }
 
-        public void SetSelected(bool isSelected)
+        public void SetSelected(bool isSelected, float selectedViewWidth = 0f)
         {
+            layoutElement.minWidth = isSelected ? selectedViewWidth / 2f : 0f;
+            
+            LayoutRebuilder.ForceRebuildLayoutImmediate(transform.parent.RectTransform());
+            
             if (isSelected)
             {
                 foreach (var anim in selectedAnimations)
