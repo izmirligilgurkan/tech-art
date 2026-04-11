@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d84777133b4b9d9e61879156393b9e, type: 3}
+  m_Name: TopBar_Home
+  m_EditorClassIdentifier: Assembly-CSharp::UI.Models.TopBarData
+  currencyBars:
+  - {fileID: 11400000, guid: 567e4e7b4e60e624eb23f687fe1937ea, type: 2}
+  - {fileID: 11400000, guid: 58fdd0e1ea1ae58498eed3e3292852bc, type: 2}
+  - {fileID: 11400000, guid: 7f5ba84bd80c1de4e8cad4b914136702, type: 2}
