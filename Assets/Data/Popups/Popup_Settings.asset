@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82076316549d4ccf962aea7c6a77c710, type: 3}
+  m_Name: Popup_Settings
+  m_EditorClassIdentifier: Assembly-CSharp::UI.Models.SettingsPopupData
+  popupPrefab: {fileID: 2684068469877709850, guid: 73ee29c76583ce040ae801b6c31e67fb, type: 3}
+  title: Settings
+  toggleableOptions:
+  - {fileID: 11400000, guid: 015f084b61afaf346b171c4a3d143e04, type: 2}
+  - {fileID: 11400000, guid: 222cd1975f723be4bb8d605d47b23940, type: 2}
+  - {fileID: 11400000, guid: ab8b818d9899135478b4b30d82681b60, type: 2}
+  - {fileID: 11400000, guid: ca94dfc8d360ff945a3033c78a90dd4f, type: 2}
+  localizationOptionData: {fileID: 11400000, guid: 5af85d28d0569424492181c453644956, type: 2}
