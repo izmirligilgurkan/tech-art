@@ -13,7 +13,6 @@ namespace UI.Views
             if (popupData is T typedData)
             {
                 Bind(typedData);
-                Setup();
             }
             else
             {
@@ -32,8 +31,8 @@ namespace UI.Views
         public abstract void Bind(IPopupData popupData);
 
         protected abstract void OnCloseClicked();
-        
-        protected void Setup()
+
+        private void Awake()
         {
             foreach (var button in closeButtons)
             {
