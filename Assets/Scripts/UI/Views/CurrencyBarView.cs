@@ -22,7 +22,7 @@ namespace UI.Views
         public void Bind(ICurrencyBarData data)
         {
             _data = data;
-            icon.sprite = _data.Icon;
+            icon.sprite = _data.Currency.Icon;
             
             _currencyObservable?.Unsubscribe(OnCurrencyChanged);
             _currencyObservable = CurrencyService.GetCurrencyObservable(data.Currency);
@@ -64,7 +64,7 @@ namespace UI.Views
             }
             
             var provider = ProviderService.Get<CurrencyParticleProvider>();
-            var particleData = new UIParticleData(_data.Icon, diff, CurrencyService.GetCurrencyAddPosition(_data.Currency), icon.transform.position);
+            var particleData = new UIParticleData(_data.Currency.Icon, diff, CurrencyService.GetCurrencyAddPosition(_data.Currency), icon.transform.position);
             provider.SpawnCurrencyParticles(particleData, () => amountText.text = newAmount.ToString());
         }
 
@@ -77,7 +77,7 @@ namespace UI.Views
             }
             
             var provider = ProviderService.Get<CurrencyParticleProvider>();
-            var particleData = new UIParticleData(_data.Icon, Mathf.Abs(diff), icon.transform.position, CurrencyService.GetCurrencySpendPosition(_data.Currency));
+            var particleData = new UIParticleData(_data.Currency.Icon, Mathf.Abs(diff), icon.transform.position, CurrencyService.GetCurrencySpendPosition(_data.Currency));
             provider.SpawnCurrencyParticles(particleData);
             amountText.text = newAmount.ToString();
         }

@@ -12,7 +12,6 @@ namespace UI.Models
         [SerializeField] private bool particleOnSpend;
         
         public ICurrency Currency => currency;
-        public Sprite Icon => icon;
         public bool ParticleOnAdd => particleOnAdd;
         public bool ParticleOnSpend => particleOnSpend;
     }

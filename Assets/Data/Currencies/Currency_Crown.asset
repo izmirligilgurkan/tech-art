@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ca3f68a9963417495489726d4ab57ce, type: 3}
-  m_Name: Currency_Heart
+  m_Name: Currency_Crown
   m_EditorClassIdentifier: Assembly-CSharp::Game.Currency.Currency
-  key: Heart
-  icon: {fileID: 21300000, guid: 62660f1dc52062c47a7acc76abeb3dc8, type: 3}
-  defaultAmount: 5
+  key: Crown
+  icon: {fileID: 21300000, guid: 013988fd66bd98c4eace5d7f8e8edc85, type: 3}
+  defaultAmount: 0
   isPurchasable: 0
