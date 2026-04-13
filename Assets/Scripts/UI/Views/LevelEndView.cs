@@ -15,7 +15,7 @@ namespace UI.Views
         [SerializeField] private RewardCell bigRewardCell;
         [SerializeField] private List<RewardCell> smallRewardViews;
         [SerializeField] private RewardCell bonusRewardCell;
-        [SerializeField] private SimpleButton homeButton;
+        [SerializeField] private SimpleButtonWithAnimation homeButton;
         [SerializeField] private SimpleButton rewardedBonusButton;
         [SerializeField] private List<RectTransform> sparkleAreas;
 
@@ -49,6 +49,12 @@ namespace UI.Views
         private void PlayShowAnimation(TweenCallback onComplete = null)
         {
             transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).OnComplete(onComplete);
+            homeButton.PlayAnimations();
+            bigRewardCell.PlayShowAnimations();
+            foreach (var smallRewardView in smallRewardViews)
+            {
+                smallRewardView.PlayShowAnimations();
+            }
         }
         
         private void PlayHideAnimation(TweenCallback onComplete = null)

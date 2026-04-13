@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using Core.Observable;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,11 +19,22 @@ namespace UI.Buttons
             UpdateVisuals(_observable.Value);
         }
         
+        private void OnDestroy()
+        {
+            Unsubscribe();
+        }
+
         public void Dispose()
+        {
+            Unsubscribe();
+        }
+
+        private void Unsubscribe()
         {
             if (_observable != null)
             {
                 _observable.Unsubscribe(UpdateVisuals);
+                _observable = null;
             }
         }
 

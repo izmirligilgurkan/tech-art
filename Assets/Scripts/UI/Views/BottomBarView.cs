@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Game.Content;
 using UI.Buttons;
 using UI.Extensions;
 using UI.Models;

@@ -18,6 +18,11 @@ namespace Core.Observable
             _value = initialValue;
         }
 
+        private void OnDestroy()
+        {
+            OnValueChanged = null;
+        }
+
         public void Subscribe(Action<bool> onValueChanged)
         {
             OnValueChanged += onValueChanged;

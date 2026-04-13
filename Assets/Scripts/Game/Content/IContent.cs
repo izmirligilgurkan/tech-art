@@ -1,4 +1,4 @@
-﻿namespace UI.Models
+﻿namespace Game.Content
 {
     public interface IContent
     {

@@ -1,4 +1,6 @@
-﻿using Game.Currency;
+﻿using System.Collections.Generic;
+using DG.Tweening;
+using Game.Currency;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +11,7 @@ namespace UI.Views
     {
         [SerializeField] private Image rewardIcon;
         [SerializeField] private TMP_Text amountText;
+        [SerializeField] private List<DOTweenAnimation> showAnimations;
         
         public void Bind(CurrencyReward reward, bool isBonus = false)
         {
@@ -16,6 +19,14 @@ namespace UI.Views
             var text = isBonus? "+" : "";
             text += reward.amount.ToString();
             amountText.text = text;
+        }
+
+        public void PlayShowAnimations()
+        {
+            foreach (var anim in showAnimations)
+            {
+                anim?.DORestart();
+            }
         }
     }
 }

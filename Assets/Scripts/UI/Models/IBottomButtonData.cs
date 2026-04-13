@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Content;
+using UnityEngine;
 
 namespace UI.Models
 {
